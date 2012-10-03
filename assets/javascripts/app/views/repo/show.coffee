@@ -69,6 +69,15 @@
       element = $('#tools .pane').toggleClass('display-inline')
       @set('active', element.hasClass('display-inline'))
 
+    buildFinished: (->
+      @get('build.result') != null
+    ).property('build.result')
+
+    repoBelongsToUserAccount: (->
+      if Travis.app.get('currentUser')
+        $.inArray(@get('repository.owner'), Travis.Account.find().map((a) -> a.get('login'))) != -1
+    ).property('repository.slug')
+
     branches: (->
       @get('repository.branches') if @get('active')
     ).property('active', 'repository.branches')

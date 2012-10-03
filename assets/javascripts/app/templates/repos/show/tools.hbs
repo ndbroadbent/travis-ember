@@ -1,4 +1,10 @@
 <div id="tools">
+  {{#if view.buildFinished}}
+    {{#if view.repoBelongsToUserAccount}}
+      <button class="rebuild_now" type="button">Rebuild now</button>
+    {{/if}}
+  {{/if}}
+
   <a href="#" {{action toggle target="view"}}></a>
   <div class="pane">
     <p>
